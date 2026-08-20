@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { SignUpButton } from "@clerk/nextjs";
 import { BarChart3, Link2, ShieldCheck, Zap } from "lucide-react";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -24,16 +24,6 @@ export default async function Home() {
             Create short links, track clicks in real time, and manage campaigns from a clean
             dashboard designed for fast teams.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <SignUpButton mode="modal">
-              <Button size="lg">Start for free</Button>
-            </SignUpButton>
-            <SignInButton mode="modal">
-              <Button size="lg" variant="outline">
-                Sign in
-              </Button>
-            </SignInButton>
-          </div>
         </section>
 
         <section className="grid gap-4 sm:grid-cols-2">
