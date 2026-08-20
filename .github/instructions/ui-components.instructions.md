@@ -1,3 +1,7 @@
+---
+description: Read this before adding or modifying UI components in this project.
+---
+
 # UI Components
 
 ## Rule: shadcn/ui Only

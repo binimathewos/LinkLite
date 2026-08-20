@@ -1,15 +1,7 @@
 # AGENTS.md
 
 Instructions for AI coding agents (and human contributors) working in this repository.
-Detailed, topic-specific standards live in [docs/](docs/). This file covers project context and
-rules that apply everywhere.
-
-> [!IMPORTANT]
-> It is CRITICAL that you read the relevant .md file(s) in [docs/](docs/) BEFORE generating
-> ANY code, in full — not just before making changes. Never write authentication code without
-> reading [docs/authentication.md](docs/authentication.md) first, and never write or modify UI
-> components without reading [docs/ui-components.md](docs/ui-components.md) first. Skipping this
-> step is not acceptable, even for what looks like a trivial or one-line change.
+This file covers project context and rules that apply everywhere.
 
 ## Project
 
@@ -29,13 +21,6 @@ follow the conventions below as features are built out rather than inventing new
 | Database  | Neon Postgres via Drizzle ORM (`neon-http` driver)                          |
 | Lint      | ESLint flat config (`eslint-config-next`)                                   |
 
-## Detailed Standards
-
-- [docs/authentication.md](docs/authentication.md) — Clerk-only auth, protected
-  routes, signed-in redirects, modal sign-in/sign-up
-- [docs/ui-components.md](docs/ui-components.md) — shadcn/ui-only UI elements, adding
-  and composing components
-
 ## Project Structure
 
 ```
@@ -53,10 +38,6 @@ directories. Use the `@/*` path alias for imports (e.g. `@/db`, `@/lib/utils`,
 
 ## General Rules
 
-- ALWAYS read the applicable [docs/](docs/) file(s) in full before generating any code — do this
-  first, before writing a single line, not as an afterthought or only when "unsure".
-- Match existing patterns in neighboring files before introducing a new one; check
-  [docs/](docs/) if unsure whether a convention already exists.
 - Do not add new dependencies for functionality already covered by the current stack
   (Tailwind/shadcn for UI, Drizzle for data access, Clerk for auth).
 - Run `npm run lint` before considering a change complete; fix lint errors rather than

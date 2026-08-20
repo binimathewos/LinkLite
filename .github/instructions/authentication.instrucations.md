@@ -1,4 +1,8 @@
-# Authentication
+---
+description: Read this before implementing or modifying authentication in this project.
+---
+
+# Authentication Guidelines
 
 ## Rule: Clerk Only
 
