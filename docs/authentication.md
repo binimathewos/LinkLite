@@ -53,7 +53,7 @@ sessions, etc.) for any part of the app.
 - Do not link to `/sign-in` or `/sign-up` as standalone pages for the primary
   auth entry points; those routes may still exist as fallbacks but modal is the
   default UX.
-- Apply the `shadcn` theme from `@clerk/ui/themes` via `ClerkProvider` so modals
+- Apply the `shadcn` theme from `@clerk/themes` via `ClerkProvider` so modals
   match the app's existing shadcn/ui styling.
 
 ## See Also
