@@ -27,13 +27,13 @@ export function DeleteLinkDialog({ linkId, shortCode }: DeleteLinkDialogProps) {
 
   const handleDelete = async () => {
     setLoading(true);
-    
+
     const result = await deleteLinkAction(linkId);
 
     if (result.success) {
       setOpen(false);
     }
-    
+
     setLoading(false);
   };
 
@@ -55,7 +55,7 @@ export function DeleteLinkDialog({ linkId, shortCode }: DeleteLinkDialogProps) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={loading}>Cancel</AlertDialogCancel>
-          <AlertDialogAction 
+          <AlertDialogAction
             onClick={handleDelete}
             disabled={loading}
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"

@@ -1,8 +1,5 @@
 import { getUserLinks } from "@/data/links";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { CreateLinkDialog } from "@/components/create-link-dialog";
 import { LinkListItem } from "@/components/link-list-item";
 

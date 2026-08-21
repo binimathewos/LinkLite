@@ -31,15 +31,12 @@ export function LinkListItem({ link }: LinkListItemProps) {
             </CardDescription>
           </div>
           <div className="flex items-center gap-2">
-            <EditLinkDialog 
+            <EditLinkDialog
               linkId={link.id}
               currentUrl={link.originalUrl}
               shortCode={link.shortCode}
             />
-            <DeleteLinkDialog 
-              linkId={link.id}
-              shortCode={link.shortCode}
-            />
+            <DeleteLinkDialog linkId={link.id} shortCode={link.shortCode} />
           </div>
         </div>
       </CardHeader>

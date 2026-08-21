@@ -28,9 +28,9 @@ export function CreateLinkDialog() {
     setError(null);
     setLoading(true);
 
-    const result = await createLinkAction({ 
+    const result = await createLinkAction({
       originalUrl: url,
-      shortCode: shortCode || undefined
+      shortCode: shortCode || undefined,
     });
 
     if (result.success) {
@@ -54,7 +54,8 @@ export function CreateLinkDialog() {
         <DialogHeader>
           <DialogTitle>Create a shortened link</DialogTitle>
           <DialogDescription>
-            Enter the URL you want to shorten. We&apos;ll generate a unique short code for you.
+            Enter the URL you want to shorten. We&apos;ll generate a unique
+            short code for you.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
@@ -80,12 +81,11 @@ export function CreateLinkDialog() {
                 onChange={(e) => setShortCode(e.target.value)}
               />
               <p className="text-sm text-muted-foreground">
-                Leave blank to auto-generate. Can contain letters, numbers, hyphens, and underscores.
+                Leave blank to auto-generate. Can contain letters, numbers,
+                hyphens, and underscores.
               </p>
             </div>
-            {error && (
-              <p className="text-sm text-destructive">{error}</p>
-            )}
+            {error && <p className="text-sm text-destructive">{error}</p>}
           </div>
           <DialogFooter>
             <Button type="submit" disabled={loading}>

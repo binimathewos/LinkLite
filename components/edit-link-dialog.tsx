@@ -22,7 +22,11 @@ interface EditLinkDialogProps {
   shortCode: string;
 }
 
-export function EditLinkDialog({ linkId, currentUrl, shortCode: initialShortCode }: EditLinkDialogProps) {
+export function EditLinkDialog({
+  linkId,
+  currentUrl,
+  shortCode: initialShortCode,
+}: EditLinkDialogProps) {
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState(currentUrl);
   const [shortCode, setShortCode] = useState(initialShortCode);
@@ -34,7 +38,7 @@ export function EditLinkDialog({ linkId, currentUrl, shortCode: initialShortCode
     setError(null);
     setLoading(true);
 
-    const result = await updateLinkAction({ 
+    const result = await updateLinkAction({
       id: linkId,
       originalUrl: url,
       shortCode,
@@ -98,9 +102,7 @@ export function EditLinkDialog({ linkId, currentUrl, shortCode: initialShortCode
                 Can contain letters, numbers, hyphens, and underscores.
               </p>
             </div>
-            {error && (
-              <p className="text-sm text-destructive">{error}</p>
-            )}
+            {error && <p className="text-sm text-destructive">{error}</p>}
           </div>
           <DialogFooter>
             <Button type="submit" disabled={loading}>

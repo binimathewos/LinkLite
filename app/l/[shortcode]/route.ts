@@ -6,13 +6,13 @@ import { NextRequest, NextResponse } from "next/server";
 /**
  * GET /l/[shortcode]
  * Redirect handler for shortened links
- * 
+ *
  * Looks up the short code in the database and redirects to the original URL.
  * Returns 404 if the short code doesn't exist.
  */
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<{ shortcode: string }> }
+  context: { params: Promise<{ shortcode: string }> },
 ) {
   const { shortcode } = await context.params;
 

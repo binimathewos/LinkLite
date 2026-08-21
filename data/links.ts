@@ -8,7 +8,8 @@ import { eq, desc } from "drizzle-orm";
  * Uses alphanumeric characters (a-z, A-Z, 0-9)
  */
 function generateShortCode(length: number = 6): string {
-  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const chars =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let result = "";
   for (let i = 0; i < length; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -22,7 +23,7 @@ function generateShortCode(length: number = 6): string {
  */
 export async function getUserLinks() {
   const { userId } = await auth();
-  
+
   if (!userId) {
     return [];
   }
@@ -41,7 +42,11 @@ export async function getUserLinks() {
  * Generates a unique short code and inserts the link into the database
  * @param customShortCode - Optional custom short code provided by the user
  */
-export async function createLink(userId: string, originalUrl: string, customShortCode?: string) {
+export async function createLink(
+  userId: string,
+  originalUrl: string,
+  customShortCode?: string,
+) {
   // Use custom short code if provided, otherwise generate one
   let shortCode = customShortCode || generateShortCode();
   let attempts = 0;
@@ -62,7 +67,9 @@ export async function createLink(userId: string, originalUrl: string, customShor
     } catch {
       // If unique constraint violation, handle based on whether it was custom or generated
       if (customShortCode) {
-        throw new Error("This short code is already taken. Please choose a different one.");
+        throw new Error(
+          "This short code is already taken. Please choose a different one.",
+        );
       }
       // If auto-generated, try a new code
       attempts++;

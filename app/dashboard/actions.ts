@@ -10,16 +10,35 @@ import { eq, and } from "drizzle-orm";
 
 const createLinkSchema = z.object({
   originalUrl: z.string().url("Please enter a valid URL"),
-  shortCode: z.string().min(3, "Short code must be at least 3 characters").max(20, "Short code must be at most 20 characters").regex(/^[a-zA-Z0-9-_]+$/, "Short code can only contain letters, numbers, hyphens, and underscores").optional().or(z.literal("")),
+  shortCode: z
+    .string()
+    .min(3, "Short code must be at least 3 characters")
+    .max(20, "Short code must be at most 20 characters")
+    .regex(
+      /^[a-zA-Z0-9-_]+$/,
+      "Short code can only contain letters, numbers, hyphens, and underscores",
+    )
+    .optional()
+    .or(z.literal("")),
 });
 
 const updateLinkSchema = z.object({
   id: z.number(),
   originalUrl: z.string().url("Please enter a valid URL"),
-  shortCode: z.string().min(3, "Short code must be at least 3 characters").max(20, "Short code must be at most 20 characters").regex(/^[a-zA-Z0-9-_]+$/, "Short code can only contain letters, numbers, hyphens, and underscores"),
+  shortCode: z
+    .string()
+    .min(3, "Short code must be at least 3 characters")
+    .max(20, "Short code must be at most 20 characters")
+    .regex(
+      /^[a-zA-Z0-9-_]+$/,
+      "Short code can only contain letters, numbers, hyphens, and underscores",
+    ),
 });
 
-export async function createLinkAction(data: { originalUrl: string; shortCode?: string }) {
+export async function createLinkAction(data: {
+  originalUrl: string;
+  shortCode?: string;
+}) {
   try {
     const { userId } = await auth();
     if (!userId) {
@@ -27,7 +46,11 @@ export async function createLinkAction(data: { originalUrl: string; shortCode?: 
     }
 
     const validated = createLinkSchema.parse(data);
-    const link = await createLink(userId, validated.originalUrl, validated.shortCode || undefined);
+    const link = await createLink(
+      userId,
+      validated.originalUrl,
+      validated.shortCode || undefined,
+    );
 
     // Revalidate the dashboard page to show the new link
     revalidatePath("/dashboard");
@@ -41,7 +64,11 @@ export async function createLinkAction(data: { originalUrl: string; shortCode?: 
   }
 }
 
-export async function updateLinkAction(data: { id: number; originalUrl: string; shortCode: string }) {
+export async function updateLinkAction(data: {
+  id: number;
+  originalUrl: string;
+  shortCode: string;
+}) {
   try {
     const { userId } = await auth();
     if (!userId) {
@@ -64,10 +91,10 @@ export async function updateLinkAction(data: { id: number; originalUrl: string; 
     try {
       const [updatedLink] = await db
         .update(links)
-        .set({ 
+        .set({
           originalUrl: validated.originalUrl,
           shortCode: validated.shortCode,
-          updatedAt: new Date()
+          updatedAt: new Date(),
         })
         .where(eq(links.id, validated.id))
         .returning();
@@ -77,7 +104,11 @@ export async function updateLinkAction(data: { id: number; originalUrl: string; 
       return { success: true, data: updatedLink };
     } catch {
       // If unique constraint violation on shortCode
-      return { success: false, error: "This short code is already taken. Please choose a different one." };
+      return {
+        success: false,
+        error:
+          "This short code is already taken. Please choose a different one.",
+      };
     }
   } catch (error) {
     if (error instanceof z.ZodError) {
